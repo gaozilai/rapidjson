@@ -50,7 +50,8 @@ int main() {
     d["Language"][2] = "java";
     d["Language"][4]["Visual Studio"][0] = "C++";
     d["Language"][4]["Visual Studio"][1] = "C#";
-    int t = d["Language"][4]["Visual Studio"].Capacity();
+    SizeType t = d["Language"][4]["Visual Studio"].Capacity();
+    std::cout << "Number of array is" << t << std::endl;
     d["Language"][4]["Visual Studio"].Clear();
 
     d.RemoveMember("Name");

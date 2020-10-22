@@ -9,14 +9,52 @@
 using namespace rapidjson;
 
 int main() {
+    const char* json = R"({
+	"Age" : 36,
+	"E-mail" : 
+	{
+		"Hotmail" : "gao_zilao@hotmail.com",
+		"Netease" : "utrust@163.com"
+	},
+	"Language" : 
+	[
+		"C",
+		"C++",
+		"Java",
+		"Python",
+		{
+			"Visual Studio" : 
+			[
+				"Visual C++",
+				"Visual C#",
+				"Visual F#"
+			]
+		},
+		[
+			"Visual C++",
+			"Visual C#",
+			"Visual F#"
+		]
+	],
+	"Name" : "Gao zilai"
+})";
+
     // 1. Parse a JSON string into DOM.
-    const char* json = "{\"project\":\"rapidjson\",\"stars\":10}";
+    //const char* json = "{\"project\":\"rapidjson\",\"stars\":10}";
     Document d;
     d.Parse(json);
 
     // 2. Modify it by DOM.
-    Value& s = d["stars"];
+    Value& s = d["Age"];
     s.SetInt(s.GetInt() + 1);
+    d["Language"][2] = "java";
+    d["Language"][4]["Visual Studio"][0] = "C++";
+    d["Language"][4]["Visual Studio"][1] = "C#";
+    int t = d["Language"][4]["Visual Studio"].Capacity();
+    d["Language"][4]["Visual Studio"].Clear();
+
+    d.RemoveMember("Name");
+
 
     // 3. Stringify the DOM
     StringBuffer buffer;

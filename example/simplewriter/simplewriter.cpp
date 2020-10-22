@@ -26,6 +26,7 @@ int main() {
     writer.StartArray();                // Between StartArray()/EndArray(),
     for (unsigned i = 0; i < 4; i++)
         writer.Uint(i);                 // all values are elements of the array.
+    writer.String("test");
     writer.EndArray();
     writer.EndObject();
 
